@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Program
+    public class Recipe
     {
-        static void Main(string[] args)
+        //place to put made cups of recipe. probably in a list
+        public decimal lemonadePrice;
+
+        public Recipe()
         {
-            Game game = new Game();
-            game.PlayGame();
-            Console.ReadLine();
+
         }
     }
 }
