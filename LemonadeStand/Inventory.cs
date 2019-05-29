@@ -23,6 +23,10 @@ namespace LemonadeStand
             cupInventory = new List<Cup> { };
         }
         //member method
+        //Cups in inventory: 0
+        //Lemons in inventory: 0
+        //Sugar in inventory: 0
+        //Ice cubes in inventory: 0
 
         
 

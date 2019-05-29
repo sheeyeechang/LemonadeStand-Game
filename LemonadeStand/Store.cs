@@ -22,8 +22,12 @@ namespace LemonadeStand
             icePrice = 0.01m;
     }
 
-
         //member method
+        //How many cups to buy
+        //How many lemons
+        //How many sugar
+        //How many ice
+
 
 
     }

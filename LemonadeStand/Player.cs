@@ -25,5 +25,11 @@ namespace LemonadeStand
 
         //member method
 
+        //public int Wallet
+        //{
+        //    get => wallet;
+        //    set => wallet;
+
+        //}
     }
 }

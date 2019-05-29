@@ -9,14 +9,26 @@ namespace LemonadeStand
     {
         //member varibale
 
-
-        public List<string> weather = new List<string>() { "good", "fair", "bad" };
+        public List<string> weather;
         public string currentWeather;
-        public List<string> forecast = new List<string>() { };
+        public List<string> forecast;
         public string currentForecast;
 
         Random random;
+
+        //member contructor
+        public Weather()
+        {
+        weather = new List<string>() { "good", "fair", "bad" };
+        forecast = new List<string>() { };
+        }
+
         //member method
+
+        //Weather/Forecast
+        //This week's forecast is 
+        //Today's weather is 
+
 
        
     }

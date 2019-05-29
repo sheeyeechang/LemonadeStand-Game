@@ -5,9 +5,25 @@ using System.Text;
 
 namespace LemonadeStand
 {
-    public class Ingredient
+    public abstract class Ingredient
     {
-        private int name;
+        //member variable
+        public string name;
         private int price;
+
+
+        //constructor
+        public Ingredient()
+        {
+
+        }
+        //member method
+        //Cost per ingredient
+        //Cost per ingredient:
+        //Lemons:  0.10
+        //Sugar:  0.10
+        //Cups: 0.04
+        //Ice Cubes: 0.01
+
     }
 }
