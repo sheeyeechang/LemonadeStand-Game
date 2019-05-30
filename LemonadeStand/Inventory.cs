@@ -9,7 +9,7 @@ namespace LemonadeStand
     {
         //member varibale
 
-        public List<Cup> cupInventory = new List<Cup>() { };
+        public List<Cup> cupInventory = new List<Cup>();
         public List<Lemon> lemonInventory = new List<Lemon>() { };
         public List<Sugar> sugarInventory = new List<Sugar>() { };
         public List<IceCube> iceCubeInventory = new List<IceCube>() { };
@@ -48,21 +48,29 @@ namespace LemonadeStand
             iceCubeInventory.Add(iceCube);
         }
         //REMOVE inventory
-        public void RemoveCup()
-        {
+        public int RemoveCup()
+        {                
             cupInventory.Remove(cup);
+            int numberCup = cupInventory.Count;
+            return numberCup;
         }
-        public void RemoveLemon()
+        public int RemoveLemon()
         {
             lemonInventory.Remove(lemon);
+            int numberLemon = lemonInventory.Count;
+            return numberLemon;
         }
-        public void RemoveSugar()
+        public int RemoveSugar()
         {
             sugarInventory.Remove(sugar);
+            int numberLemon = lemonInventory.Count;
+            return numberLemon;
         }
-        public void RemoveIceCube()
+        public int RemoveIceCube()
         {
-            iceCubeInventory.Remove(iceCube);
+            iceCubeInventory.RemoveAt(0);
+            int numberLemon = lemonInventory.Count;
+            return numberLemon;
         }
         //COUNT inventory
         public int CountCup()
@@ -72,18 +80,25 @@ namespace LemonadeStand
         }
         public int CountLemon()
         {
-            int countCups = cupInventory.Count();
-            return countCups;
+            int countLemon = lemonInventory.Count();
+            return countLemon;
         }
         public int CountSugar()
         {
-            int countCups = cupInventory.Count();
-            return countCups;
+            int countSugar = sugarInventory.Count();
+            return countSugar;
         }
         public int CountIceCube()
         {
-            int countCups = cupInventory.Count();
-            return countCups;
+            int countIceCube = iceCubeInventory.Count();
+            return countIceCube;
+        }
+
+
+        //Inventory Used
+        public void InventoryUsed()
+        {
+
         }
     }
 }

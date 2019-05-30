@@ -5,20 +5,18 @@ namespace LemonadeStand
     public class Game
     {
         //member variable (HAS A)//
-        UserInterface userInterface;
 
         Player player1;
         Player player2;
         public int gameMode;
 
         Day day;
-        Store store;
+        public Store store;
 
         //constructor (SPAWNER/DEFAULT)//
         public Game()
         {
             gameMode = 0;
-            userInterface = new UserInterface();
             day = new Day();
             player1 = new Player();
             store = new Store();
@@ -28,38 +26,110 @@ namespace LemonadeStand
         //member method
         public void PlayGame()
         {
-            userInterface.DisplayRules();
-            userInterface.ThisWeekForecast(day.weather, day.dayNames);
-            userInterface.TodayWeather(day.weather);
-            userInterface.DaysPlayed(day, day.dayName);       
+            UserInterface.DisplayRules();
+            UserInterface.ThisWeekForecast(day.weather, day.dayNames);
+            UserInterface.TodayWeather(day.weather);
+            UserInterface.DaysPlayed(day, day.dayName);       
             for (int i = 0; i < 7; i++)
             {
                 player1.day.CurrentDay(day.dayName);
             }
-            userInterface.WalletToStart(player1);
-            int numberOfCups = userInterface.NumberOfCups();
+            UserInterface.WalletToStart(player1);
+            //int playerWallet = UserInterface.WalletToStart(player1);
+            //for (int i = 0; i < playerWallet; i++)
+            //{
+            //    player1.wallet.money -= store.cupsPrice;
+            //    player1.wallet.money -= store.lemonPrice;
+            //    player1.wallet.money -= store.sugarPrice;
+            //    player1.wallet.money -= store.iceCubePrice;
+            //}
+
+            int numberOfCups = UserInterface.NumberOfCups();
             for (int i = 0; i < numberOfCups; i++)
             {
                 player1.inventory.AddCup();
-                player1.wallet.money -= store.cupsPrice;
-            }           
-            int numberOfLemons = userInterface.NumberOfLemons();
+                if (UserInterface.NotEnoughMoney(player1) == true)
+                {
+                    break;
+                }
+                //player1.wallet.money -= store.cupsPrice;
+            }
+            UserInterface.DisplayStats(player1);
+            UserInterface.DisplayMoneyCountCup(store, player1, numberOfCups);
+
+            int numberOfLemons = UserInterface.NumberOfLemons();
             for (int i = 0; i < numberOfLemons; i++)
             {
                 player1.inventory.AddLemon();
-                player1.wallet.money -= store.lemonPrice;
+                if (UserInterface.NotEnoughMoney(player1) == true)
+                {
+                    break;
+                }
+                //player1.wallet.money -= store.lemonPrice;
             }
-            int numberOfSugars = userInterface.NumberOfSugars();
+            UserInterface.DisplayStats(player1);
+            UserInterface.DisplayMoneyCountLemon(store, player1, numberOfLemons);
+
+            int numberOfSugars = UserInterface.NumberOfSugars();
             for (int i = 0; i < numberOfSugars; i++)
             {
                 player1.inventory.AddSugar();
-                player1.wallet.money -= store.sugarPrice;
+                if (UserInterface.NotEnoughMoney(player1) == true)
+                {
+                    break;
+                }
+                //player1.wallet.money -= store.sugarPrice;
             }
-            userInterface.NumberOfIceCubes();
-            userInterface.PriceFor1CupOfLemonade();
-            userInterface.TotalEarningPerWeek();
+            UserInterface.DisplayStats(player1);
+            UserInterface.DisplayMoneyCountSugar(store, player1, numberOfSugars);
 
-            bool result = userInterface.DetermineIfRestart();
+            int numberOfIceCubes = UserInterface.NumberOfIceCubes();
+            for (int i = 0; i < numberOfIceCubes; i++)
+            {
+                player1.inventory.AddIceCube();
+                if (UserInterface.NotEnoughMoney(player1) == true)
+                {
+                    break;
+                }
+                //player1.wallet.money -= store.iceCubePrice;
+            }
+            UserInterface.DisplayStats(player1);
+            UserInterface.DisplayMoneyCountIceCube(store, player1, numberOfIceCubes);
+
+            UserInterface.DisplayStats(player1);
+            int numberOfCupsUsed = UserInterface.CupUsedToMakeLemonade(player1.inventory);
+            for (int i = 0; i < numberOfCupsUsed; i++)
+            {
+                player1.inventory.RemoveCup();
+            }
+
+            UserInterface.DisplayStats(player1);
+            int numberOfLemonsUsed = UserInterface.LemonUsedToMakeLemonade(player1.inventory);
+            for (int i = 0; i < numberOfLemonsUsed; i++)
+            {
+                player1.inventory.RemoveLemon();
+            }
+
+            UserInterface.DisplayStats(player1);
+            int numberOfSugarUsed = UserInterface.SugarUsedToMakeLemonade(player1.inventory);
+            for (int i = 0; i < numberOfSugarUsed; i++)
+            {
+                player1.inventory.RemoveSugar();
+            }
+
+            UserInterface.DisplayStats(player1);
+            int numberOfIceCubeUsed = UserInterface.IceCubeUsedToMakeLemonade(player1.inventory);
+            for (int i = 0; i < numberOfIceCubeUsed; i++)
+            {
+                player1.inventory.RemoveIceCube();
+            }
+
+            UserInterface.PriceFor1CupOfLemonade();
+
+            UserInterface.DisplayStats(player1);
+            UserInterface.TotalEarningPerWeek();
+
+            bool result = UserInterface.DetermineIfRestart();
             if (result == true)
             {
                 PlayGame();

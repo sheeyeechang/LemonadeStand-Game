@@ -8,12 +8,11 @@ namespace LemonadeStand
     public class IceCube : Ingredient
     {
         //member variable
-        IceCube iceCube;
 
         //constructor
         public IceCube()
         {
-            iceCube = new IceCube();
+
         }
 
     }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LemonadeStand
 {
-    public class UserInterface
+    public static class UserInterface
     {
         //member variable
         public static int lemonsBought;
@@ -16,13 +16,13 @@ namespace LemonadeStand
         //constructor
 
         //member method
-        public void DisplayRules()
+        public static void DisplayRules()
         {
             Console.WriteLine("Welcome to Lemonade Stand!" + "\n" + "Your objective is to sell as many cups of lemonade as possible in 7 days." + "\n" + "RULES:" + "\n" + "1. You have a starting budget ($20.00) to operate a lemonade stand." + "\n" + "2. You will choose your recipe for your lemonade that include (lemons, sugar, and ice) and adjust pricing in order to sell the most lemonade." + "\n" + "3. At the beginning of each day, you will be given the week’s forecast and day forecast: bad or fair or good." + "\n" + "4. Based on the weather, you will determine the prices per cup and how many cups of lemonade to make for that day." + "\n" + "5. Demand will depend on the price you set as well as the weather for that day." + "\n" + "6. At the end of each day, you’ll see your daily profit or loss. Play again, and try to beat your high score!");
             Console.ReadLine();
         }
         //This week forecast
-        public void ThisWeekForecast(Weather weather, List<string> dayNames)
+        public static void ThisWeekForecast(Weather weather, List<string> dayNames)
         {
             string forecast = weather.WeekForecast(dayNames);
             Console.WriteLine("This week 7 days forecast:" + forecast);
@@ -32,117 +32,204 @@ namespace LemonadeStand
         }
 
         //Today weather
-        public void TodayWeather(Weather weather)
+        public static void TodayWeather(Weather weather)
         {
             Console.WriteLine("Today's weather: " + weather.currentWeather);
             Console.ReadLine();
         }
 
         //Number of Days Played
-        public void DaysPlayed(Day day, string dayName)
+        public static void DaysPlayed(Day day, string dayName)
         {
             string dayOne = day.CurrentDay(dayName);
             Console.WriteLine("Current Day Played:" + dayOne);
             Console.ReadLine();
         }
         //Wallet to start
-        public void WalletToStart(Player player)
+        public static void WalletToStart(Player player)
         {
             Console.WriteLine($"Wallet: ${player.wallet.money}");
         }
 
         //How many cups to buy
-        public int NumberOfCups()
+        public static int NumberOfCups()
         {
-            Console.WriteLine("How many cups would you like to buy?" + "\n" + "Enter 1: 1 cup = $0.05" + "\n" + "Enter 25: 25 cups = $0.83" + "\n" + "Enter 50: 50 cups = $1.73" + "\n" + "Enter 100: 100 cups = $2.77");
-            string enterCup = Console.ReadLine().ToLower();
-
-            switch (enterCup)
+            Console.WriteLine("How many cups would you like to buy?" + "\n" + "1 cup = $0.05");
+            int enterCup = int.Parse(Console.ReadLine());
+            if (enterCup > 0)
             {
-                case "1":
-                    return 1;
-                case "25":
-                    return 25;
-                case "50":
-                    return 50;
-                case "100":
-                    return 100;
-                default:
-                    Console.WriteLine("Invalid input.");
-                    return NumberOfCups();
+                return enterCup;
             }
-        }
-        //Display stats
-        public void DisplayStats()
-        {
+            else
+            { 
+                Console.WriteLine("Invalid input.");
+                return NumberOfCups();
+            }
 
+        }
+
+
+        //Display stats
+        public static void DisplayStats(Player player)
+        {
+            int countCup = player.inventory.CountCup();
+            int countLemon = player.inventory.CountLemon();
+            int countSugar = player.inventory.CountSugar();
+            int countIceCube = player.inventory.CountIceCube();
+            Console.WriteLine($"Cup: {countCup}" + "   " + $"Lemon: {countLemon}" + "   " + $"Sugar: {countSugar}" + "   " + $"Ice cube: {countIceCube}");
+        }
+        //Display money count Cup
+        public static void DisplayMoneyCountCup(Store store, Player player, int numberOfItem)
+        {
+            decimal countMoneyCup = store.CountCupPrice(numberOfItem);
+            Console.WriteLine($"Wallet: ${player.wallet.money -= countMoneyCup}");
         }
 
         //How many lemons to buy
-        public int NumberOfLemons()
+        public static int NumberOfLemons()
         {
-            Console.WriteLine("How many lemons would you like to buy?" + "\n" + "Enter 1: 1 lemon = $0.10" + "\n" + "Enter 10: 10 lemons = $0.91" + "\n" + "Enter 30: 30 lemons = $2.41;" + "\n" + "Enter 75: 75 cups = $4.31");
-            string enterLemon = Console.ReadLine().ToLower();
-
-            switch (enterLemon)
+            Console.WriteLine("How many lemons would you like to buy?" + "\n" + "1 lemon = $0.15");
+            int enterLemon = int.Parse(Console.ReadLine());
+            if (enterLemon > 0)
             {
-                case "1":
-                    return 1;
-                case "10":
-                    return 10;
-                case "30":
-                    return 30;
-                case "75":
-                    return 75;
-                default:
-                    Console.WriteLine("Invalid input.");
-                    return NumberOfLemons();
+                return enterLemon;
             }
+            else
+            {
+                Console.WriteLine("Invalid input.");
+                return NumberOfLemons();
+            }
+        }
+        //Display money count Lemon
+        public static void DisplayMoneyCountLemon(Store store, Player player, int numberOfItem)
+        {  
+            decimal countMoneyLemon = store.CountLemonPrice(numberOfItem);
+            Console.WriteLine($"Wallet: ${player.wallet.money -= (countMoneyLemon)}");
         }
         //How many sugar to buy
-        public int NumberOfSugars()
+        public static int NumberOfSugars()
         {
-            Console.WriteLine("How many cups of sugar would you like to buy?" + "\n" + "Enter 1: 1 cup of sugar = $0.10" + "\n" + "Enter 8: 8 cups of sugar = $0.71" + "\n" + "Enter 20: 20 cups of sugar = $1.56" + "\n" + "Enter 48: 48 cups of sugar = $3.45");
-            string enterSugar = Console.ReadLine().ToLower();
-
-            switch (enterSugar)
+            Console.WriteLine("How many cups of sugar would you like to buy?" + "\n" + "1 cup of sugar = $0.10");
+            int enterSugar = int.Parse(Console.ReadLine());
+            if (enterSugar > 0)
             {
-                case "1":
-                    return 1;
-                case "8":
-                    return 8;
-                case "20":
-                    return 20;
-                case "48":
-                    return 48;
-                default:
-                    Console.WriteLine("Invalid input.");
-                    return NumberOfLemons();
+                return enterSugar;
             }
+            else
+            {
+                Console.WriteLine("Invalid input.");
+                return NumberOfSugars();
+            }
+        }
+        //Display money count Sugar
+        public static void DisplayMoneyCountSugar(Store store, Player player, int numberOfItem)
+        {
+            decimal countMoneySugar = store.CountSugarPrice(numberOfItem);
+            Console.WriteLine($"Wallet: ${player.wallet.money -= countMoneySugar}");
         }
         //How many icecube to buy
-        public int NumberOfIceCubes()
+        public static int NumberOfIceCubes()
         {
-            Console.WriteLine("How many ice cube would you like to buy?" + "\n" + "Enter 1: 1 ice cube = $0.01" + "\n" + "Enter 25: 25 ice cubes = $0.20" + "\n" + "Enter 50: 50 ice cubes = $0.40" + "\n" + "Enter 100: 100 ice cubes = $0.80");
-            string enterSugar = Console.ReadLine().ToLower();
-
-            switch (enterSugar)
+            Console.WriteLine("How many ice cube would you like to buy?" + "\n" + "1 ice cube = $0.02");
+            int enterIceCube = int.Parse(Console.ReadLine());
+            if (enterIceCube > 0)
             {
-                case "1":
-                    return 1;
-                case "25":
-                    return 25;
-                case "50":
-                    return 50;
-                case "100":
-                    return 100;
-                default:
-                    Console.WriteLine("Invalid input.");
-                    return NumberOfLemons();
+                return enterIceCube;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input.");
+                return NumberOfIceCubes();
             }
         }
+        //Display money count Ice Cube
+        public static void DisplayMoneyCountIceCube(Store store, Player player, int numberOfItem)
+        {
+            decimal countMoneyIceCube = store.CountIceCubePrice(numberOfItem);
+            Console.WriteLine($"Wallet: ${player.wallet.money -= (countMoneyIceCube)}");
+        }
+        //Display not enough money
+        public static bool NotEnoughMoney(Player player)
+        {
+            if (player.wallet.money <= 0)
+            {
+                Console.WriteLine("You don't have enough money!");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        //Make lemonade
+        //Number of Cup used to make lemonade
+        public static int CupUsedToMakeLemonade(Inventory inventory)
+        {
+            int numberCup;
+            Console.WriteLine("How many cup would you use to make lemonade?");
+            numberCup = int.Parse(Console.ReadLine());
+            if (numberCup <= inventory.CountCup())
+            {
+                return numberCup;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input.");
+                return LemonUsedToMakeLemonade(inventory);
+            }
+        }
+
+        //Number of Lemon used to make lemonade
+        public static int LemonUsedToMakeLemonade(Inventory inventory)
+        {
+            int numberLemon;
+            Console.WriteLine("How many lemon would you use to make lemonade?");
+            numberLemon= int.Parse(Console.ReadLine());
+            if (numberLemon <= inventory.CountLemon())
+            {
+                return numberLemon;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input.");
+                return LemonUsedToMakeLemonade(inventory);
+            }                               
+        }
+        //Number of Sugar used to make lemonade
+        public static int SugarUsedToMakeLemonade(Inventory inventory)
+        {
+            int numberSugar;
+            Console.WriteLine("How many cup of sugar would you use to make lemonade?");
+            numberSugar = int.Parse(Console.ReadLine());
+            if (numberSugar <= inventory.CountSugar())
+            {
+                return numberSugar;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input.");
+                return LemonUsedToMakeLemonade(inventory);
+            }
+        }
+        //Number of Ice cube to make lemonade
+        public static int IceCubeUsedToMakeLemonade(Inventory inventory)
+        {
+            int numberIceCube;
+            Console.WriteLine("How many ice cube would you use to make lemonade?");
+            numberIceCube = int.Parse(Console.ReadLine());
+            if (numberIceCube <= inventory.CountIceCube())
+            {
+                return numberIceCube;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input.");
+                return LemonUsedToMakeLemonade(inventory);
+            }
+        }
+
         //Price for a cup of lemonade
-        public void PriceFor1CupOfLemonade()
+        public static void PriceFor1CupOfLemonade()
         {
             Console.WriteLine("Enter price of your lemonade in cents:");
             Console.ReadLine();
@@ -151,7 +238,7 @@ namespace LemonadeStand
         //player1.soldLemonade
 
         //Total earning per day
-        public void TotalEarningPerDay()
+        public static void TotalEarningPerDay()
         {
             Console.WriteLine("Player earnings:");
             Console.ReadLine();
@@ -161,12 +248,12 @@ namespace LemonadeStand
             Console.ReadLine();
         }
         //Total earnings for 7 days
-        public void TotalEarningPerWeek()
+        public static void TotalEarningPerWeek()
         {
             Console.WriteLine("Player earnings for 7 days report:" + "\n" + "Total Income:" + "\n" + "Total Expenses" + "\n" + "Net Profit or Loss:");
             Console.ReadLine();
         }
-        public bool DetermineIfRestart()
+        public static bool DetermineIfRestart()
         {
             Console.WriteLine("Would you like to play again? Enter: 1 = Yes or 2 = No");
             string yesNo = Console.ReadLine().ToLower();
