@@ -10,6 +10,11 @@ namespace LemonadeStand
     {
         //place to put made cups of recipe. probably in a list
         public decimal lemonadePrice;
+        public int numberOfLemon;
+        public int numberOfSugar;
+        public int numberOfIceCube;
+        public int numberOfCup;
+
 
         public Recipe()
         {

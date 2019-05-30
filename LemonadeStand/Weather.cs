@@ -20,7 +20,9 @@ namespace LemonadeStand
         public Weather()
         {
         weather = new List<string>() { "good", "fair", "bad" };
-        forecast = new List<string>() { };
+        forecast = new List<string>() {};
+
+            random = new Random();
         }
 
         //member method
@@ -29,7 +31,29 @@ namespace LemonadeStand
         //This week's forecast is 
         //Today's weather is 
 
+        public void TypeOfWeatherConditions()
+        {
+            int i = random.Next(0, 3);
+            currentWeather = weather[i];
+        }
+  
 
-       
+        public string WeekForecast(List<string> dayNames)
+        {
+            string weekWeatherConditions = "";
+            Random random = new Random();
+            for (int i = 0; i < 7; i++)
+            {
+                // weekWeatherConditions += "";
+                TypeOfWeatherConditions();
+                weekWeatherConditions += (" " + dayNames[i] + " = " + currentWeather + ",");
+                // weekWeatherConditions = weekWeatherConditions + dayNames[i] + " " + currentWeather;
+               
+                // add the currentWeather onto weekWeatherConditions
+
+            }
+            return weekWeatherConditions;
+        }
+
     }
 }
