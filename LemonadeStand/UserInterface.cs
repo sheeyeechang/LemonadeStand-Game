@@ -45,30 +45,101 @@ namespace LemonadeStand
             Console.WriteLine("Current Day Played:" + dayOne);
             Console.ReadLine();
         }
+        //Wallet to start
+        public void WalletToStart(Player player)
+        {
+            Console.WriteLine($"Wallet: ${player.wallet.money}");
+        }
 
         //How many cups to buy
-        public void NumberOfCups()
+        public int NumberOfCups()
         {
-            Console.WriteLine("How many cups would you like to buy?" + "\n" + "1 cup = $0.05" + "\n" + "25 cups = $0.83" + "\n" + "50 cups = $1.73" + "\n" + "100 cups = $2.77");
-            Console.ReadLine();
+            Console.WriteLine("How many cups would you like to buy?" + "\n" + "Enter 1: 1 cup = $0.05" + "\n" + "Enter 25: 25 cups = $0.83" + "\n" + "Enter 50: 50 cups = $1.73" + "\n" + "Enter 100: 100 cups = $2.77");
+            string enterCup = Console.ReadLine().ToLower();
+
+            switch (enterCup)
+            {
+                case "1":
+                    return 1;
+                case "25":
+                    return 25;
+                case "50":
+                    return 50;
+                case "100":
+                    return 100;
+                default:
+                    Console.WriteLine("Invalid input.");
+                    return NumberOfCups();
+            }
         }
-        //How many lemons to buy
-        public void NumberOfLemons()
+        //Display stats
+        public void DisplayStats()
         {
-            Console.WriteLine("How many lemons would you like to buy?" + "\n" + "1 lemon = $0.10" + "\n" + "10 lemons = $0.91" + "\n" + "30 lemons = $2.41;" + "\n" + "75 cups = $4.31");
-            Console.ReadLine();
+
+        }
+
+        //How many lemons to buy
+        public int NumberOfLemons()
+        {
+            Console.WriteLine("How many lemons would you like to buy?" + "\n" + "Enter 1: 1 lemon = $0.10" + "\n" + "Enter 10: 10 lemons = $0.91" + "\n" + "Enter 30: 30 lemons = $2.41;" + "\n" + "Enter 75: 75 cups = $4.31");
+            string enterLemon = Console.ReadLine().ToLower();
+
+            switch (enterLemon)
+            {
+                case "1":
+                    return 1;
+                case "10":
+                    return 10;
+                case "30":
+                    return 30;
+                case "75":
+                    return 75;
+                default:
+                    Console.WriteLine("Invalid input.");
+                    return NumberOfLemons();
+            }
         }
         //How many sugar to buy
-        public void NumberOfSugar()
+        public int NumberOfSugars()
         {
-            Console.WriteLine("How many cups of sugar would you like to buy?" + "\n" + "1 cup os sugar = $0.10" + "\n" + "8 cups of sugar = $0.71" + "\n" + "20 cups of sugar = $1.56" + "\n" + "48 cups of sugar = $3.45");
-            Console.ReadLine();
+            Console.WriteLine("How many cups of sugar would you like to buy?" + "\n" + "Enter 1: 1 cup of sugar = $0.10" + "\n" + "Enter 8: 8 cups of sugar = $0.71" + "\n" + "Enter 20: 20 cups of sugar = $1.56" + "\n" + "Enter 48: 48 cups of sugar = $3.45");
+            string enterSugar = Console.ReadLine().ToLower();
+
+            switch (enterSugar)
+            {
+                case "1":
+                    return 1;
+                case "8":
+                    return 8;
+                case "20":
+                    return 20;
+                case "48":
+                    return 48;
+                default:
+                    Console.WriteLine("Invalid input.");
+                    return NumberOfLemons();
+            }
         }
         //How many icecube to buy
-        public void NumberOfIceCube()
+        public int NumberOfIceCubes()
         {
-            Console.WriteLine("How many ice cube would you like to buy?" + "\n" + "1 ice cube = $0.01" + "\n" + "25 ice cubes = $0.20" + "\n" + "50 ice cubes = $0.40" + "\n" + "100 ice cubes = $0.80");
-            Console.ReadLine();
+            Console.WriteLine("How many ice cube would you like to buy?" + "\n" + "Enter 1: 1 ice cube = $0.01" + "\n" + "Enter 25: 25 ice cubes = $0.20" + "\n" + "Enter 50: 50 ice cubes = $0.40" + "\n" + "Enter 100: 100 ice cubes = $0.80");
+            string enterSugar = Console.ReadLine().ToLower();
+
+            switch (enterSugar)
+            {
+                case "1":
+                    return 1;
+                case "25":
+                    return 25;
+                case "50":
+                    return 50;
+                case "100":
+                    return 100;
+                default:
+                    Console.WriteLine("Invalid input.");
+                    return NumberOfLemons();
+            }
         }
         //Price for a cup of lemonade
         public void PriceFor1CupOfLemonade()
@@ -76,6 +147,8 @@ namespace LemonadeStand
             Console.WriteLine("Enter price of your lemonade in cents:");
             Console.ReadLine();
         }
+
+        //player1.soldLemonade
 
         //Total earning per day
         public void TotalEarningPerDay()

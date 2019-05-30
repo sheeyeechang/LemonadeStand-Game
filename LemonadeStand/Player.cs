@@ -15,12 +15,16 @@ namespace LemonadeStand
         public int soldLemonade;
         public decimal totalProfit;
 
+        public Day day;
+
         //constructor
-        public Player(int soldLemonade)
+        public Player()
         {
             inventory = new Inventory();
             wallet = new Wallet(20.00m);
-            this.soldLemonade = soldLemonade;
+            this.soldLemonade = 0;
+
+            day = new Day();
         }
 
         //member method
