@@ -39,7 +39,7 @@ namespace LemonadeStand
         }
 
         //Number of Days Played
-        public static void DaysPlayed(Day day, string dayName)
+        public static void DaysPlayed(Day day, int dayName)
         {
             string dayOne = day.CurrentDay(dayName);
             Console.WriteLine("Current Day Played:" + dayOne);
@@ -249,9 +249,12 @@ namespace LemonadeStand
             Console.WriteLine($"Wallet: ${player.wallet.money + (player.soldLemonade * recipe.lemonadePrice)}");
         }
         //Total earnings for 7 days
-        public static void TotalEarningPerWeek()
+        public static void TotalEarningPerWeek(Player player)
         {
-            Console.WriteLine("Player earnings for 7 days report:" + "\n" + "Total Income:" + "\n" + "Total Expenses" + "\n" + "Net Profit or Loss:");
+            Console.WriteLine("Player earnings for 7 days report:");
+            Console.WriteLine("Total Income:");
+            Console.WriteLine("Total Expenses");
+            Console.WriteLine("Net Profit or Loss:" + player.totalProfit);
             Console.ReadLine();
         }
         public static bool DetermineIfRestart()
