@@ -26,11 +26,12 @@ namespace LemonadeStand
 
         public string CurrentDay(int dayName)
         {
-
             return dayNames[dayName];
             // weekDay = weekDay + dayNames[0];
-
-
+        }
+        public void DayResetLemonadeSold(Player player)
+        {
+            player.soldLemonade = 0;
         }
     }
 }

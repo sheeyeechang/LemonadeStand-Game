@@ -31,13 +31,10 @@ namespace LemonadeStand
             for (int i = 0; i < 7; i++)
             {
                 UserInterface.DaysPlayed(day, i);
-          
+
                 UserInterface.ThisWeekForecast(day.weather, day.dayNames);
                 UserInterface.TodayWeather(day.weather);
-
-
-
-                UserInterface.WalletToStart(player1);
+                UserInterface.WalletToStart(player1, player1.recipe);
                 //int playerWallet = UserInterface.WalletToStart(player1);
                 //for (int i = 0; i < playerWallet; i++)
                 //{
@@ -46,55 +43,54 @@ namespace LemonadeStand
                 //    player1.wallet.money -= store.sugarPrice;
                 //    player1.wallet.money -= store.iceCubePrice;
                 //}
+                UserInterface.DisplayStats(player1);
+
 
                 int numberOfCups = UserInterface.NumberOfCups();
-                for (int j = 0; j < numberOfCups; j++)
+                if (!UserInterface.NotEnoughMoney(player1, (store.cupsPrice * numberOfCups)))
                 {
-                    player1.inventory.AddCup();
-                    if (UserInterface.NotEnoughMoney(player1) == true)
+                    for (int j = 0; j < numberOfCups; j++)
                     {
-                        break;
+                        player1.inventory.AddCup();
+                        player1.wallet.money -= store.cupsPrice;
                     }
-                    //player1.wallet.money -= store.cupsPrice;
                 }
+
                 UserInterface.DisplayStats(player1);
                 UserInterface.DisplayMoneyCountCup(store, player1, numberOfCups);
 
                 int numberOfLemons = UserInterface.NumberOfLemons();
-                for (int j = 0; j < numberOfLemons; j++)
-                {
-                    player1.inventory.AddLemon();
-                    if (UserInterface.NotEnoughMoney(player1) == true)
+                if (!UserInterface.NotEnoughMoney(player1, (store.lemonPrice * numberOfLemons)))
+                { 
+                    for (int j = 0; j < numberOfLemons; j++)
                     {
-                        break;
+                        player1.inventory.AddLemon();
+                        player1.wallet.money -= store.lemonPrice;
                     }
-                    //player1.wallet.money -= store.lemonPrice;
                 }
                 UserInterface.DisplayStats(player1);
                 UserInterface.DisplayMoneyCountLemon(store, player1, numberOfLemons);
 
                 int numberOfSugars = UserInterface.NumberOfSugars();
-                for (int j = 0; j < numberOfSugars; j++)
+                if (!UserInterface.NotEnoughMoney(player1, (store.sugarPrice * numberOfSugars)))
                 {
-                    player1.inventory.AddSugar();
-                    if (UserInterface.NotEnoughMoney(player1) == true)
+                    for (int j = 0; j < numberOfSugars; j++)
                     {
-                        break;
+                        player1.inventory.AddSugar();
+                        player1.wallet.money -= store.sugarPrice;
                     }
-                    //player1.wallet.money -= store.sugarPrice;
                 }
                 UserInterface.DisplayStats(player1);
                 UserInterface.DisplayMoneyCountSugar(store, player1, numberOfSugars);
 
                 int numberOfIceCubes = UserInterface.NumberOfIceCubes();
-                for (int j = 0; j < numberOfIceCubes; j++)
-                {
-                    player1.inventory.AddIceCube();
-                    if (UserInterface.NotEnoughMoney(player1) == true)
+                if (!UserInterface.NotEnoughMoney(player1, (store.iceCubePrice * numberOfIceCubes)))
+                { 
+                    for (int j = 0; j < numberOfIceCubes; j++)                    
                     {
-                        break;
+                        player1.inventory.AddIceCube();
+                        player1.wallet.money -= store.iceCubePrice;
                     }
-                    //player1.wallet.money -= store.iceCubePrice;
                 }
                 UserInterface.DisplayStats(player1);
                 UserInterface.DisplayMoneyCountIceCube(store, player1, numberOfIceCubes);
@@ -134,7 +130,7 @@ namespace LemonadeStand
 
                 UserInterface.DisplayStats(player1);
 
-
+                day.DayResetLemonadeSold(player1);
             }
 
 

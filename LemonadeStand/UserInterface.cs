@@ -42,21 +42,49 @@ namespace LemonadeStand
         public static void DaysPlayed(Day day, int dayName)
         {
             string dayOne = day.CurrentDay(dayName);
-            Console.WriteLine("Current Day Played:" + dayOne);
+            Console.WriteLine("Current Day Played: " + dayOne);
             Console.ReadLine();
         }
         //Wallet to start
-        public static void WalletToStart(Player player)
+        public static void WalletToStart(Player player, Recipe recipe)
         {
-            Console.WriteLine($"Wallet: ${player.wallet.money}");
+            Console.WriteLine($"Wallet: ${player.wallet.money + (player.soldLemonade * recipe.lemonadePrice)}");
         }
+
+        //Display what you want to buy
+        //public static bool WhatItemToBuy()
+        //{
+        //    Console.WriteLine("what item you like to buy?");
+        //    Console.WriteLine("Enter: 1 = Cup   or   2 = Lemon   or   3 = Sugar   or   4 = Ice cube");
+        //    string enterItem = Console.ReadLine().ToLower();
+
+        //    switch (enterItem)
+        //    {
+        //        case "1":
+        //            return NumberOfCups();
+        //            break;
+        //        case "2":
+        //            return NumberOfLemons();
+        //            break;
+        //        case "3":
+        //            return NumberOfSugars();
+        //            break;
+        //        case "4":
+        //            return NumberOfIceCubes();
+        //            break;
+        //        default:
+        //            Console.WriteLine("Invalid input.");
+        //            return WhatItemToBuy();
+        //            break;
+        //    }
+        //}
 
         //How many cups to buy
         public static int NumberOfCups()
         {
             Console.WriteLine("How many cups would you like to buy?" + "\n" + "1 cup = $0.05");
             int enterCup = int.Parse(Console.ReadLine());
-            if (enterCup > 0)
+            if (enterCup >= 0)
             {
                 return enterCup;
             }
@@ -82,7 +110,7 @@ namespace LemonadeStand
         public static void DisplayMoneyCountCup(Store store, Player player, int numberOfItem)
         {
             decimal countMoneyCup = store.CountCupPrice(numberOfItem);
-            Console.WriteLine($"Wallet: ${player.wallet.money -= countMoneyCup}");
+            Console.WriteLine($"Wallet: ${player.wallet.money}");
         }
 
         //How many lemons to buy
@@ -90,7 +118,7 @@ namespace LemonadeStand
         {
             Console.WriteLine("How many lemons would you like to buy?" + "\n" + "1 lemon = $0.15");
             int enterLemon = int.Parse(Console.ReadLine());
-            if (enterLemon > 0)
+            if (enterLemon >= 0)
             {
                 return enterLemon;
             }
@@ -104,14 +132,14 @@ namespace LemonadeStand
         public static void DisplayMoneyCountLemon(Store store, Player player, int numberOfItem)
         {  
             decimal countMoneyLemon = store.CountLemonPrice(numberOfItem);
-            Console.WriteLine($"Wallet: ${player.wallet.money -= (countMoneyLemon)}");
+            Console.WriteLine($"Wallet: ${player.wallet.money}");
         }
         //How many sugar to buy
         public static int NumberOfSugars()
         {
             Console.WriteLine("How many cups of sugar would you like to buy?" + "\n" + "1 cup of sugar = $0.10");
             int enterSugar = int.Parse(Console.ReadLine());
-            if (enterSugar > 0)
+            if (enterSugar >= 0)
             {
                 return enterSugar;
             }
@@ -125,14 +153,14 @@ namespace LemonadeStand
         public static void DisplayMoneyCountSugar(Store store, Player player, int numberOfItem)
         {
             decimal countMoneySugar = store.CountSugarPrice(numberOfItem);
-            Console.WriteLine($"Wallet: ${player.wallet.money -= countMoneySugar}");
+            Console.WriteLine($"Wallet: ${player.wallet.money}");
         }
         //How many icecube to buy
         public static int NumberOfIceCubes()
         {
             Console.WriteLine("How many ice cube would you like to buy?" + "\n" + "1 ice cube = $0.02");
             int enterIceCube = int.Parse(Console.ReadLine());
-            if (enterIceCube > 0)
+            if (enterIceCube >= 0)
             {
                 return enterIceCube;
             }
@@ -146,12 +174,12 @@ namespace LemonadeStand
         public static void DisplayMoneyCountIceCube(Store store, Player player, int numberOfItem)
         {
             decimal countMoneyIceCube = store.CountIceCubePrice(numberOfItem);
-            Console.WriteLine($"Wallet: ${player.wallet.money -= (countMoneyIceCube)}");
+            Console.WriteLine($"Wallet: ${player.wallet.money}");
         }
         //Display not enough money
-        public static bool NotEnoughMoney(Player player)
+        public static bool NotEnoughMoney(Player player, decimal itemPrice)
         {
-            if (player.wallet.money <= 0)
+            if (player.wallet.money <= itemPrice)
             {
                 Console.WriteLine("You don't have enough money!");
                 return true;
@@ -159,6 +187,7 @@ namespace LemonadeStand
             else
             {
                 return false;
+
             }
         }
         //Make lemonade//Recipe
