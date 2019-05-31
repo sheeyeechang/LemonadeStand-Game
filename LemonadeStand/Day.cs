@@ -11,6 +11,7 @@ namespace LemonadeStand
         public Weather weather;
         public List<string> dayNames;
         public string dayName;
+        public Customer customer;
 
         //constructor
         public Day()
@@ -18,16 +19,25 @@ namespace LemonadeStand
             weather = new Weather();
             dayNames = new List<string>() { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 
+            customer = new Customer();
         }
 
         //member method
 
         public string CurrentDay(string dayName)
         {
-            string weekDay = "";
-                weekDay += dayNames[0];
-                // weekDay = weekDay + dayNames[0];
-            return weekDay;
+            string weekDay;
+            //for (int i = 0; i < dayNames.Count; i++)
+            {
+                int i = 0;
+                weekDay = dayNames[i];
+                i++;
+                return weekDay;
+                
+            }
+            // weekDay = weekDay + dayNames[0];
+            
+            
         }
     }
 }

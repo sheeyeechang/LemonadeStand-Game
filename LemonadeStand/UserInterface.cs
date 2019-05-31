@@ -235,16 +235,18 @@ namespace LemonadeStand
 
         //Total earning per day
         //player1.soldLemonade
-        public static void TotalEarningPerDay()
+        public static void TotalEarningPerDay(Customer customer, Weather weather, Recipe recipe, Player player, Random random)
         {
-            Console.WriteLine("Player earnings for toady");
-            Console.ReadLine();
-            Console.WriteLine("# of cups sale:");
-            player1.soldLemonade = int.Parse
-            Console.ReadLine();
-            Console.WriteLine("# of money sale:");
-            player.wallet.money -=
-            Console.ReadLine();
+            Console.WriteLine("Player earnings for today");
+            customer.CustomerBuyingCupOfLemonadeBadWeather(weather, player, random);
+            customer.CustomerBuyingCupOfLemonadeFairWeather(weather, player, random);
+            customer.CustomerBuyingCupOfLemonadeGoodWeather(weather, player, random);
+            customer.CustomerBuyingCupOfLemonadeHighPrice(recipe, player, random);
+            customer.CustomerBuyingCupOfLemonadeMediumPrice(recipe, player, random);
+            customer.CustomerBuyingCupOfLemonadeLowPrice(recipe, player, random);
+            Console.WriteLine("# of cups sale: " + player.soldLemonade);
+            Console.WriteLine("# of money sale: " + $"${player.soldLemonade * recipe.lemonadePrice}");
+            Console.WriteLine($"Wallet: ${player.wallet.money + (player.soldLemonade * recipe.lemonadePrice)}");
         }
         //Total earnings for 7 days
         public static void TotalEarningPerWeek()
