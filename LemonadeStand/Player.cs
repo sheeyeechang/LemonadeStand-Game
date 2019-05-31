@@ -11,6 +11,7 @@ namespace LemonadeStand
         public string name;
 
         public Inventory inventory;
+        public Recipe recipe;
         public Wallet wallet;
         public int soldLemonade;
         public decimal totalProfit;
@@ -21,6 +22,7 @@ namespace LemonadeStand
         public Player()
         {
             inventory = new Inventory();
+            recipe = new Recipe();
             wallet = new Wallet(20.00m);
             this.soldLemonade = 0;
 
@@ -33,7 +35,8 @@ namespace LemonadeStand
         //{
         //    get => wallet;
         //    set => wallet;
-
         //}
+
+        
     }
 }

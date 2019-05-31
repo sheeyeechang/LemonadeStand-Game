@@ -7,9 +7,13 @@ namespace LemonadeStand
 {
     public class Customer
     {
-
+        //member variable
         public Random random;
 
-        
+        //constructor
+        public Customer()
+        {
+            random = new Random();
+        }
     }
 }

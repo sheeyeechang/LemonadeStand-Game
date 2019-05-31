@@ -161,90 +161,89 @@ namespace LemonadeStand
                 return false;
             }
         }
-        //Make lemonade
+        //Make lemonade//Recipe
         //Number of Cup used to make lemonade
-        public static int CupUsedToMakeLemonade(Inventory inventory)
+        public static int CupUsedToMakeLemonade(Recipe recipe, Inventory inventory)
         {
-            int numberCup;
             Console.WriteLine("How many cup would you use to make lemonade?");
-            numberCup = int.Parse(Console.ReadLine());
-            if (numberCup <= inventory.CountCup())
+            recipe.numberOfCup = int.Parse(Console.ReadLine());
+            if (recipe.numberOfCup <= inventory.CountCup())
             {
-                return numberCup;
+                return recipe.numberOfCup;
             }
             else
             {
                 Console.WriteLine("Invalid input.");
-                return LemonUsedToMakeLemonade(inventory);
+                return LemonUsedToMakeLemonade(recipe, inventory);
             }
         }
 
         //Number of Lemon used to make lemonade
-        public static int LemonUsedToMakeLemonade(Inventory inventory)
-        {
-            int numberLemon;
+        public static int LemonUsedToMakeLemonade(Recipe recipe, Inventory inventory)
+        {          
             Console.WriteLine("How many lemon would you use to make lemonade?");
-            numberLemon= int.Parse(Console.ReadLine());
-            if (numberLemon <= inventory.CountLemon())
+            recipe.numberOfLemon = int.Parse(Console.ReadLine());
+            if (recipe.numberOfLemon <= inventory.CountLemon())
             {
-                return numberLemon;
+                return recipe.numberOfLemon;
             }
             else
             {
                 Console.WriteLine("Invalid input.");
-                return LemonUsedToMakeLemonade(inventory);
+                return LemonUsedToMakeLemonade(recipe, inventory);
             }                               
         }
         //Number of Sugar used to make lemonade
-        public static int SugarUsedToMakeLemonade(Inventory inventory)
+        public static int SugarUsedToMakeLemonade(Recipe recipe, Inventory inventory)
         {
-            int numberSugar;
             Console.WriteLine("How many cup of sugar would you use to make lemonade?");
-            numberSugar = int.Parse(Console.ReadLine());
-            if (numberSugar <= inventory.CountSugar())
+            recipe.numberOfSugar = int.Parse(Console.ReadLine());
+            if (recipe.numberOfSugar <= inventory.CountSugar())
             {
-                return numberSugar;
+                return recipe.numberOfSugar;
             }
             else
             {
                 Console.WriteLine("Invalid input.");
-                return LemonUsedToMakeLemonade(inventory);
+                return LemonUsedToMakeLemonade(recipe, inventory);
             }
         }
         //Number of Ice cube to make lemonade
-        public static int IceCubeUsedToMakeLemonade(Inventory inventory)
+        public static int IceCubeUsedToMakeLemonade(Recipe recipe, Inventory inventory)
         {
-            int numberIceCube;
             Console.WriteLine("How many ice cube would you use to make lemonade?");
-            numberIceCube = int.Parse(Console.ReadLine());
-            if (numberIceCube <= inventory.CountIceCube())
+            recipe.numberOfIceCube = int.Parse(Console.ReadLine());
+            if (recipe.numberOfIceCube <= inventory.CountIceCube())
             {
-                return numberIceCube;
+                return recipe.numberOfIceCube;
             }
             else
             {
                 Console.WriteLine("Invalid input.");
-                return LemonUsedToMakeLemonade(inventory);
+                return LemonUsedToMakeLemonade(recipe, inventory);
             }
         }
 
         //Price for a cup of lemonade
-        public static void PriceFor1CupOfLemonade()
+        public static decimal PriceFor1CupOfLemonade(Recipe recipe)
         {
-            Console.WriteLine("Enter price of your lemonade in cents:");
-            Console.ReadLine();
+            Console.WriteLine("Enter price of your lemonade in cents: $");
+            recipe.lemonadePrice = Convert.ToDecimal(Console.ReadLine());
+            return recipe.lemonadePrice;
         }
 
-        //player1.soldLemonade
 
         //Total earning per day
+        //player1.soldLemonade
         public static void TotalEarningPerDay()
         {
-            Console.WriteLine("Player earnings:");
+            Console.WriteLine("Player earnings for toady");
             Console.ReadLine();
             Console.WriteLine("# of cups sale:");
+            player1.soldLemonade = int.Parse
             Console.ReadLine();
             Console.WriteLine("# of money sale:");
+            player.wallet.money -=
             Console.ReadLine();
         }
         //Total earnings for 7 days

@@ -97,34 +97,36 @@ namespace LemonadeStand
             UserInterface.DisplayMoneyCountIceCube(store, player1, numberOfIceCubes);
 
             UserInterface.DisplayStats(player1);
-            int numberOfCupsUsed = UserInterface.CupUsedToMakeLemonade(player1.inventory);
+            int numberOfCupsUsed = UserInterface.CupUsedToMakeLemonade(player1.recipe, player1.inventory);
             for (int i = 0; i < numberOfCupsUsed; i++)
             {
                 player1.inventory.RemoveCup();
             }
 
             UserInterface.DisplayStats(player1);
-            int numberOfLemonsUsed = UserInterface.LemonUsedToMakeLemonade(player1.inventory);
+            int numberOfLemonsUsed = UserInterface.LemonUsedToMakeLemonade(player1.recipe, player1.inventory);
             for (int i = 0; i < numberOfLemonsUsed; i++)
             {
                 player1.inventory.RemoveLemon();
             }
 
             UserInterface.DisplayStats(player1);
-            int numberOfSugarUsed = UserInterface.SugarUsedToMakeLemonade(player1.inventory);
+            int numberOfSugarUsed = UserInterface.SugarUsedToMakeLemonade(player1.recipe, player1.inventory);
             for (int i = 0; i < numberOfSugarUsed; i++)
             {
                 player1.inventory.RemoveSugar();
             }
 
             UserInterface.DisplayStats(player1);
-            int numberOfIceCubeUsed = UserInterface.IceCubeUsedToMakeLemonade(player1.inventory);
+            int numberOfIceCubeUsed = UserInterface.IceCubeUsedToMakeLemonade(player1.recipe, player1.inventory);
             for (int i = 0; i < numberOfIceCubeUsed; i++)
             {
                 player1.inventory.RemoveIceCube();
             }
 
-            UserInterface.PriceFor1CupOfLemonade();
+            UserInterface.PriceFor1CupOfLemonade(player1.recipe);
+
+
 
             UserInterface.DisplayStats(player1);
             UserInterface.TotalEarningPerWeek();
