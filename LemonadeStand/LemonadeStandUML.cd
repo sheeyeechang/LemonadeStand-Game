@@ -3,56 +3,56 @@
   <Class Name="LemonadeStand.Weather">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAABAAAAAEAAQAAAAQAAA=</HashCode>
+      <HashCode>AAEAAAEQAABAAAAAAAAAAAAAABAAAAAEAAQAACAQAAA=</HashCode>
       <FileName>Weather.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LemonadeStand.Customer">
     <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <HashCode>AAEAACAFCAAAAAAAAABAIAAAAAAAAAAAAAQAAKAAAQA=</HashCode>
       <FileName>Customer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LemonadeStand.Game">
     <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>wAAAAAAAAAAAAIABAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <HashCode>wAAgAAAAAAAAAAABAAAAAAAAAAAAAAABAgAAAAIAAAA=</HashCode>
       <FileName>Game.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LemonadeStand.Player">
     <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAIAAAAAAEAAASAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAgAEIAAAAAQAAAAAAAIAAAAAAEAAASAAIAAAAAAAA=</HashCode>
       <FileName>Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LemonadeStand.Store">
     <Position X="9.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAEAAAABAgAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <HashCode>ACEAAAAAAAAAAAAAABBgAAAAAAAIIAAAAAAAAAAAgAA=</HashCode>
       <FileName>Store.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LemonadeStand.Day">
     <Position X="10.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAABAAAAAQAAAAAAAAgAABAAAQAAAAAAAAAABAA=</HashCode>
       <FileName>Day.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LemonadeStand.UserInterface">
     <Position X="0.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAEAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <HashCode>BAIAAhBAgIABFIABGAAAQAAAUQAAAARAKAgBAYAICAA=</HashCode>
       <FileName>UserInterface.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LemonadeStand.Inventory">
     <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAGAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <HashCode>AAAAgAIEAGAAAgBAAgIQAAgIAAAAABAAAAAQAKQAAgA=</HashCode>
       <FileName>Inventory.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -66,7 +66,7 @@
   <Class Name="LemonadeStand.IceCube">
     <Position X="2.25" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IceCube.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -80,15 +80,8 @@
   <Class Name="LemonadeStand.Recipe">
     <Position X="7.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAIgAAQAAAEAA=</HashCode>
       <FileName>Recipe.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="LemonadeStand.Stand">
-    <Position X="9.25" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAIAAAAAAAAAA=</HashCode>
-      <FileName>Stand.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LemonadeStand.Wallet">
@@ -100,14 +93,6 @@
   </Class>
   <Class Name="LemonadeStand.Lemon">
     <Position X="2.25" Y="6.25" Width="1.5" />
-    <InheritanceLine Type="LemonadeStand.Ingredient" FixedToPoint="true">
-      <Path>
-        <Point X="4.75" Y="5.046" />
-        <Point X="4.75" Y="5.95" />
-        <Point X="2.938" Y="5.95" />
-        <Point X="2.938" Y="6.25" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Lemon.cs</FileName>

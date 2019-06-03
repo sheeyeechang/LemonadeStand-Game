@@ -33,6 +33,7 @@ namespace LemonadeStand
                 UserInterface.DaysPlayed(day, i);
                 UserInterface.ThisWeekForecast(day.weather, day.dayNames);
                 UserInterface.TodayWeather(day.weather);
+                UserInterface.TodayTemperature(day.weather.TemperatureConditions());
                 UserInterface.WalletToStart(player1, player1.recipe);
                 //int playerWallet = UserInterface.WalletToStart(player1);
                 //for (int i = 0; i < playerWallet; i++)
@@ -130,7 +131,7 @@ namespace LemonadeStand
                 string lemonadePrice = UserInterface.PriceFor1CupOfLemonade(player1.recipe);
                 player1.recipe.lemonadePrice = Convert.ToDecimal(lemonadePrice);
 
-                TotalBuyingCupOfLemonade(day.customer, day.weather, player1.recipe, player1, day.customer.random);
+                TotalBuyingCupOfLemonade(day.customer, day.weather, player1.recipe, player1, day.weather.currentTemperature, day.customer.random);
                 player1.wallet.money += player1.soldLemonade * player1.recipe.lemonadePrice;
 
                 UserInterface.TellPlayerTotalCupsSoldAndEarningsPerDay(player1.soldLemonade, player1.recipe.lemonadePrice);
@@ -155,7 +156,7 @@ namespace LemonadeStand
             }
         }
 
-        public static void TotalBuyingCupOfLemonade(Customer customer, Weather weather, Recipe recipe, Player player, Random random)
+        public void TotalBuyingCupOfLemonade(Customer customer, Weather weather, Recipe recipe, Player player, int temperature, Random random)
         {
             customer.CustomerBuyingCupOfLemonadeBadWeather(weather, player, random);
             customer.CustomerBuyingCupOfLemonadeFairWeather(weather, player, random);
@@ -163,6 +164,11 @@ namespace LemonadeStand
             customer.CustomerBuyingCupOfLemonadeHighPrice(recipe, player, random);
             customer.CustomerBuyingCupOfLemonadeMediumPrice(recipe, player, random);
             customer.CustomerBuyingCupOfLemonadeLowPrice(recipe, player, random);
+            customer.CustomerBuyingCupOfLemonadeLowTemperature(day.weather.currentTemperature, player, random);
+            customer.CustomerBuyingCupOfLemonadeAverageTemperature(day.weather.currentTemperature, player, random);
+            customer.CustomerBuyingCupOfLemonadeHighTemperature(day.weather.currentTemperature, player, random);
+
+
         }
     }
 }

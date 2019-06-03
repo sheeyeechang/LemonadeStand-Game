@@ -9,7 +9,7 @@ namespace LemonadeStand
     {
         //member varibale
 
-        public List<Cup> cupInventory = new List<Cup>();
+        public List<Cup> cupInventory = new List<Cup>() { };
         public List<Lemon> lemonInventory = new List<Lemon>() { };
         public List<Sugar> sugarInventory = new List<Sugar>() { };
         public List<IceCube> iceCubeInventory = new List<IceCube>() { };

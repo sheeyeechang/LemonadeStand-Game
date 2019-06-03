@@ -21,7 +21,7 @@ namespace LemonadeStand
 
             customer = new Customer();
         }
-
+        
         //member method
 
         public string CurrentDay(int dayName)
@@ -33,6 +33,5 @@ namespace LemonadeStand
         {
             player.soldLemonade = 0;
         }
-
     }
 }

@@ -14,6 +14,9 @@ namespace LemonadeStand
         public List<string> forecast;
         public string currentForecast;
 
+        public List<int> temperature;
+        public int currentTemperature;
+
         Random random;
 
         //member contructor
@@ -22,10 +25,20 @@ namespace LemonadeStand
         weather = new List<string>() { "good", "fair", "bad" };
         forecast = new List<string>() {};
 
-            random = new Random();
+        temperature = new List<int>() { };
+
+        random = new Random();
         }
 
         //member method
+
+        //Today's temperature
+        public int TemperatureConditions()
+        {
+            currentTemperature = random.Next(55, 99);
+            return currentTemperature;
+
+        }
 
         //Weather/Forecast
         //This week's forecast is 

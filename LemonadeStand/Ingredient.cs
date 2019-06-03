@@ -9,7 +9,7 @@ namespace LemonadeStand
     {
         //member variable
         public string name;
-        private int price;
+        private decimal price;
 
 
         //constructor

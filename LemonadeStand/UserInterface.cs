@@ -8,10 +8,10 @@ namespace LemonadeStand
     public static class UserInterface
     {
         //member variable
-        public static int lemonsBought;
-        public static int cupsBought;
-        public static int sugarBought;
-        public static int iceBought;
+        public static int countCup;
+        public static int countLemon;
+        public static int countSugar;
+        public static int countIceCube;
 
         //constructor
 
@@ -19,23 +19,35 @@ namespace LemonadeStand
         public static void DisplayRules()
         {
             Console.WriteLine("Welcome to Lemonade Stand!" + "\n" + "Your objective is to sell as many cups of lemonade as possible in 7 days." + "\n" + "RULES:" + "\n" + "1. You have a starting budget ($20.00) to operate a lemonade stand." + "\n" + "2. You will choose your recipe for your lemonade that include (lemons, sugar, and ice) and adjust pricing in order to sell the most lemonade." + "\n" + "3. At the beginning of each day, you will be given the week’s forecast and day forecast: bad or fair or good." + "\n" + "4. Based on the weather, you will determine the prices per cup and how many cups of lemonade to make for that day." + "\n" + "5. Demand will depend on the price you set as well as the weather for that day." + "\n" + "6. At the end of each day, you’ll see your daily profit or loss. Play again, and try to beat your high score!");
-            Console.ReadLine();
+            Console.WriteLine("Press enter to continue.");
+            Console.ReadKey();
         }
         //This week forecast
         public static void ThisWeekForecast(Weather weather, List<string> dayNames)
         {
             string forecast = weather.WeekForecast(dayNames);
             Console.WriteLine("This week 7 days forecast:" + forecast);
-            Console.ReadLine();
+            Console.WriteLine("Press enter to continue.");
+            Console.ReadKey();
             Console.WriteLine("**Remember that this is only a forecast. The weather CAN change**");
-            Console.ReadLine();
+            Console.WriteLine("Press enter to continue.");
+            Console.ReadKey();
         }
 
         //Today weather
         public static void TodayWeather(Weather weather)
         {
             Console.WriteLine("Today's weather: " + weather.currentWeather);
-            Console.ReadLine();
+            Console.WriteLine("Press enter to continue.");
+            Console.ReadKey();
+        }
+
+        //Today temperature
+        public static void TodayTemperature(int temperature)
+        {
+            Console.WriteLine("Today's temperature: " + temperature);
+            Console.WriteLine("Press enter to continue.");
+            Console.ReadKey();
         }
 
         //Number of Days Played
@@ -43,7 +55,8 @@ namespace LemonadeStand
         {
             string dayOne = day.CurrentDay(dayName);
             Console.WriteLine("Current Day Played: " + dayOne);
-            Console.ReadLine();
+            Console.WriteLine("Press enter to continue.");
+            Console.ReadKey();
         }
         //Wallet to start
         public static void WalletToStart(Player player, Recipe recipe)
@@ -95,7 +108,7 @@ namespace LemonadeStand
             }
         }
 
-        //Display stats
+        //Display stats// Single Responsibility Example
         public static void DisplayStats(Player player)
         {
             int countCup = player.inventory.CountCup();
@@ -104,6 +117,7 @@ namespace LemonadeStand
             int countIceCube = player.inventory.CountIceCube();
             Console.WriteLine($"Cup: {countCup}" + "   " + $"Lemon: {countLemon}" + "   " + $"Sugar: {countSugar}" + "   " + $"Ice cube: {countIceCube}");
         }
+
         //Display money count Cup
         public static void DisplayMoneyCountCup(Store store, Player player, int numberOfItem)
         {
@@ -254,9 +268,9 @@ namespace LemonadeStand
         //Price for a cup of lemonade
         public static string PriceFor1CupOfLemonade(Recipe recipe)
         {
-            Console.WriteLine("Enter price of your lemonade in cents: $"); 
-            string a = Console.ReadLine();
-            return a;
+            Console.WriteLine("Enter price of your lemonade in cents: $");
+            string priceForLemonade = Console.ReadLine();
+            return priceForLemonade;
         }
 
         //Buying Cup of Lemonade 
@@ -276,7 +290,7 @@ namespace LemonadeStand
 
         public static void TellPlayerProfitPerDay(int soldLemonade, decimal lemonadePrice, decimal cupsCost, decimal lemonsCost, decimal sugarsCost, decimal iceCubeCost)
         {
-            Console.WriteLine("Today's Profit or Loss: " + string.Format("{0:#.00}", ((soldLemonade * lemonadePrice) - (cupsCost + lemonsCost + sugarsCost + iceCubeCost))));
+            Console.WriteLine("Today's Profit or Loss: $" + string.Format("{0:#.00}", ((soldLemonade * lemonadePrice) - (cupsCost + lemonsCost + sugarsCost + iceCubeCost))));
         }
 
         //public void DisplayPlayerEarnings(Player player)

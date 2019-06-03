@@ -97,5 +97,50 @@ namespace LemonadeStand
                 }
             }
         }
+
+
+        public void CustomerBuyingCupOfLemonadeLowTemperature(int temperature, Player player, Random random)
+        {
+            if (temperature <= 70)
+            {
+                int cupSale = random.Next(1, 12);
+                for (int i = 1; i <= cupSale; i++)
+                {
+                    player.soldLemonade++;
+                    player.recipe.numberOfCup--;
+                }
+            }
+        }
+        //Fair Weather Sale
+        public void CustomerBuyingCupOfLemonadeAverageTemperature(int temperature, Player player, Random random)
+        {
+            if (temperature > 70 && temperature < 85)
+            {
+                int cupSale = random.Next(1, 8);
+                for (int i = 1; i <= cupSale; i++)
+                {
+                    player.soldLemonade++;
+                    player.recipe.numberOfCup--;
+                }
+            }
+
+        }
+        // Good Weather Sale
+        public void CustomerBuyingCupOfLemonadeHighTemperature(int temperature, Player player, Random random)
+        {
+            if (temperature >= 85)
+            {
+                int cupSale = random.Next(1, 4);
+                for (int i = 1; i <= cupSale; i++)
+                {
+                    player.soldLemonade++;
+                    player.recipe.numberOfCup--;
+                }
+            }
+        }
+
+
+
+
     }
 }
