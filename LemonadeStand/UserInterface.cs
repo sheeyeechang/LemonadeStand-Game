@@ -48,36 +48,36 @@ namespace LemonadeStand
         //Wallet to start
         public static void WalletToStart(Player player, Recipe recipe)
         {
-            Console.WriteLine($"Wallet: ${player.wallet.money + (player.soldLemonade * recipe.lemonadePrice)}");
+            Console.WriteLine($"Wallet: ${player.wallet.money}");
         }
 
         //Display what you want to buy
-        //public static bool WhatItemToBuy()
-        //{
-        //    Console.WriteLine("what item you like to buy?");
-        //    Console.WriteLine("Enter: 1 = Cup   or   2 = Lemon   or   3 = Sugar   or   4 = Ice cube");
-        //    string enterItem = Console.ReadLine().ToLower();
+        public static void WhatItemToBuy()
+        {
+            Console.WriteLine("what item you like to buy?");
+            Console.WriteLine("Enter: 1 = Cup   or   2 = Lemon   or   3 = Sugar   or   4 = Ice cube");
+            string enterItem = Console.ReadLine().ToLower();
 
-        //    switch (enterItem)
-        //    {
-        //        case "1":
-        //            return NumberOfCups();
-        //            break;
-        //        case "2":
-        //            return NumberOfLemons();
-        //            break;
-        //        case "3":
-        //            return NumberOfSugars();
-        //            break;
-        //        case "4":
-        //            return NumberOfIceCubes();
-        //            break;
-        //        default:
-        //            Console.WriteLine("Invalid input.");
-        //            return WhatItemToBuy();
-        //            break;
-        //    }
-        //}
+            switch (enterItem)
+            {
+                case "1":
+                    NumberOfCups();
+                    break;
+                case "2":
+                    NumberOfLemons();
+                    break;
+                case "3":
+                    NumberOfSugars();
+                    break;
+                case "4":
+                    NumberOfIceCubes();
+                    break;
+                default:
+                    Console.WriteLine("Invalid input.");
+                    WhatItemToBuy();
+                    break;
+            }
+        }
 
         //How many cups to buy
         public static int NumberOfCups()
@@ -93,7 +93,6 @@ namespace LemonadeStand
                 Console.WriteLine("Invalid input.");
                 return NumberOfCups();
             }
-
         }
 
 
@@ -203,7 +202,7 @@ namespace LemonadeStand
             else
             {
                 Console.WriteLine("Invalid input.");
-                return LemonUsedToMakeLemonade(recipe, inventory);
+                return CupUsedToMakeLemonade(recipe, inventory);
             }
         }
 
@@ -234,7 +233,7 @@ namespace LemonadeStand
             else
             {
                 Console.WriteLine("Invalid input.");
-                return LemonUsedToMakeLemonade(recipe, inventory);
+                return SugarUsedToMakeLemonade(recipe, inventory);
             }
         }
         //Number of Ice cube to make lemonade
@@ -249,7 +248,7 @@ namespace LemonadeStand
             else
             {
                 Console.WriteLine("Invalid input.");
-                return LemonUsedToMakeLemonade(recipe, inventory);
+                return IceCubeUsedToMakeLemonade(recipe, inventory);
             }
         }
 
@@ -261,29 +260,50 @@ namespace LemonadeStand
             return recipe.lemonadePrice;
         }
 
-
-        //Total earning per day
-        //player1.soldLemonade
-        public static void TotalEarningPerDay(Customer customer, Weather weather, Recipe recipe, Player player, Random random)
+        //Buying Cup of Lemonade
+        public static void TotalBuyingCupOfLemonade (Customer customer, Weather weather, Recipe recipe, Player player, Random random)
         {
-            Console.WriteLine("Player earnings for today");
             customer.CustomerBuyingCupOfLemonadeBadWeather(weather, player, random);
             customer.CustomerBuyingCupOfLemonadeFairWeather(weather, player, random);
             customer.CustomerBuyingCupOfLemonadeGoodWeather(weather, player, random);
             customer.CustomerBuyingCupOfLemonadeHighPrice(recipe, player, random);
             customer.CustomerBuyingCupOfLemonadeMediumPrice(recipe, player, random);
             customer.CustomerBuyingCupOfLemonadeLowPrice(recipe, player, random);
-            Console.WriteLine("# of cups sale: " + player.soldLemonade);
-            Console.WriteLine("# of money sale: " + $"${player.soldLemonade * recipe.lemonadePrice}");
-            Console.WriteLine($"Wallet: ${player.wallet.money + (player.soldLemonade * recipe.lemonadePrice)}");
         }
+        
+        //Total earning per day
+        //player1.soldLemonade
+        public static decimal TotalEarningPerDay(Recipe recipe, Player player)
+        {
+            Console.WriteLine("Player earnings for today");
+            Console.WriteLine("# of cups sale: " + player.soldLemonade);
+            Console.WriteLine("# of money sale: " + $"${player.soldLemonade * recipe.lemonadePrice}");       
+            return player.dayEarning;
+        }
+
+        public static void TotalEarningPerDayPlayer(Recipe recipe, Player player)
+        {
+            Console.WriteLine("Wallet: " + $"${player.wallet.money += (player.soldLemonade * recipe.lemonadePrice)}");
+        }
+
+        public static decimal ProfitPerDayPlayer(Player player, Recipe recipe)
+        {
+            Console.WriteLine("Net Profit or Loss: " + $"${(player.wallet.money += (player.soldLemonade * recipe.lemonadePrice)) - 20.00m}");
+            return player.totalProfit;
+        }
+
+        //public void DisplayPlayerEarnings(Player player)
+        //{
+        //    Console.WriteLine($"Player earnings: { player.totalProfit }");
+        //}
+
         //Total earnings for 7 days
         public static void TotalEarningPerWeek(Player player)
         {
             Console.WriteLine("Player earnings for 7 days report:");
-            Console.WriteLine("Total Income:");
-            Console.WriteLine("Total Expenses");
-            Console.WriteLine("Net Profit or Loss:" + player.totalProfit);
+            Console.WriteLine("Total Income: {player.dayEarning}");
+            Console.WriteLine("Total Expenses: ");
+            Console.WriteLine("Net Profit or Loss: {player.totalProfit}");
             Console.ReadLine();
         }
         public static bool DetermineIfRestart()

@@ -14,6 +14,8 @@ namespace LemonadeStand
         public Recipe recipe;
         public Wallet wallet;
         public int soldLemonade;
+        public decimal dayEarning;
+        public decimal totalEarning;
         public decimal totalProfit;
 
         public Day day;
@@ -25,6 +27,7 @@ namespace LemonadeStand
             recipe = new Recipe();
             wallet = new Wallet(20.00m);
             this.soldLemonade = 0;
+            this.dayEarning = 0;
 
             day = new Day();
         }

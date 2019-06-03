@@ -45,7 +45,6 @@ namespace LemonadeStand
                 //}
                 UserInterface.DisplayStats(player1);
 
-
                 int numberOfCups = UserInterface.NumberOfCups();
                 if (!UserInterface.NotEnoughMoney(player1, (store.cupsPrice * numberOfCups)))
                 {
@@ -62,6 +61,9 @@ namespace LemonadeStand
                 int numberOfLemons = UserInterface.NumberOfLemons();
                 if (!UserInterface.NotEnoughMoney(player1, (store.lemonPrice * numberOfLemons)))
                 { 
+
+                    //while loop///////
+
                     for (int j = 0; j < numberOfLemons; j++)
                     {
                         player1.inventory.AddLemon();
@@ -95,6 +97,8 @@ namespace LemonadeStand
                 UserInterface.DisplayStats(player1);
                 UserInterface.DisplayMoneyCountIceCube(store, player1, numberOfIceCubes);
 
+                UserInterface.WhatItemToBuy();
+
                 UserInterface.DisplayStats(player1);
                 int numberOfCupsUsed = UserInterface.CupUsedToMakeLemonade(player1.recipe, player1.inventory);
                 for (int j = 0; j < numberOfCupsUsed; j++)
@@ -122,15 +126,18 @@ namespace LemonadeStand
                 {
                     player1.inventory.RemoveIceCube();
                 }
-
+             
                 UserInterface.DisplayStats(player1);
                 UserInterface.PriceFor1CupOfLemonade(player1.recipe);
 
-                UserInterface.TotalEarningPerDay(day.customer, day.weather, player1.recipe, player1, day.customer.random);
+                UserInterface.TotalBuyingCupOfLemonade(day.customer, day.weather, player1.recipe, player1, day.customer.random);
+                UserInterface.TotalEarningPerDay(player1.recipe, player1);
+                UserInterface.TotalEarningPerDayPlayer(player1.recipe, player1);
+                UserInterface.ProfitPerDayPlayer(player1, player1.recipe);
 
                 UserInterface.DisplayStats(player1);
 
-                day.DayResetLemonadeSold(player1);
+                day.ResetLemonadeSoldPerDay(player1);
             }
 
 
