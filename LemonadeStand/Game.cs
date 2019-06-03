@@ -20,7 +20,7 @@ namespace LemonadeStand
             day = new Day();
             player1 = new Player();
             store = new Store();
-            
+
         }
 
         //member method
@@ -46,58 +46,58 @@ namespace LemonadeStand
                 UserInterface.DisplayStats(player1);
 
                 int numberOfCups = UserInterface.NumberOfCups();
-                if (!UserInterface.NotEnoughMoney(player1, (store.cupsPrice * numberOfCups)))
+                while (UserInterface.NotEnoughMoney(player1, (store.cupsPrice * numberOfCups)))
                 {
-                    for (int j = 0; j < numberOfCups; j++)
-                    {
-                        player1.inventory.AddCup();
-                        player1.wallet.money -= store.cupsPrice;
-                    }
+                    numberOfCups = UserInterface.NumberOfCups();
+                }
+                for (int j = 0; j < numberOfCups; j++)
+                {
+                    player1.inventory.AddCup();
+                    player1.wallet.money -= store.cupsPrice;
                 }
 
                 UserInterface.DisplayStats(player1);
                 UserInterface.DisplayMoneyCountCup(store, player1, numberOfCups);
 
                 int numberOfLemons = UserInterface.NumberOfLemons();
-                if (!UserInterface.NotEnoughMoney(player1, (store.lemonPrice * numberOfLemons)))
-                { 
-
-                    //while loop///////
-
-                    for (int j = 0; j < numberOfLemons; j++)
-                    {
-                        player1.inventory.AddLemon();
-                        player1.wallet.money -= store.lemonPrice;
-                    }
+                while (UserInterface.NotEnoughMoney(player1, (store.lemonPrice * numberOfLemons)))
+                {
+                    numberOfLemons = UserInterface.NumberOfLemons();
+                }               
+                for (int j = 0; j < numberOfLemons; j++)
+                {
+                    player1.inventory.AddLemon();
+                    player1.wallet.money -= store.lemonPrice;
                 }
+                
                 UserInterface.DisplayStats(player1);
                 UserInterface.DisplayMoneyCountLemon(store, player1, numberOfLemons);
 
                 int numberOfSugars = UserInterface.NumberOfSugars();
-                if (!UserInterface.NotEnoughMoney(player1, (store.sugarPrice * numberOfSugars)))
+                while (UserInterface.NotEnoughMoney(player1, (store.sugarPrice * numberOfSugars)))
                 {
-                    for (int j = 0; j < numberOfSugars; j++)
+                    numberOfSugars = UserInterface.NumberOfSugars();
+                }
+                for (int j = 0; j < numberOfSugars; j++)
                     {
                         player1.inventory.AddSugar();
                         player1.wallet.money -= store.sugarPrice;
-                    }
-                }
+                    }                
                 UserInterface.DisplayStats(player1);
                 UserInterface.DisplayMoneyCountSugar(store, player1, numberOfSugars);
 
                 int numberOfIceCubes = UserInterface.NumberOfIceCubes();
-                if (!UserInterface.NotEnoughMoney(player1, (store.iceCubePrice * numberOfIceCubes)))
-                { 
-                    for (int j = 0; j < numberOfIceCubes; j++)                    
+                while (UserInterface.NotEnoughMoney(player1, (store.iceCubePrice * numberOfIceCubes)))
+                {
+                    numberOfIceCubes = UserInterface.NumberOfIceCubes();
+                }
+                for (int j = 0; j < numberOfIceCubes; j++)
                     {
                         player1.inventory.AddIceCube();
                         player1.wallet.money -= store.iceCubePrice;
-                    }
-                }
+                    }                
                 UserInterface.DisplayStats(player1);
                 UserInterface.DisplayMoneyCountIceCube(store, player1, numberOfIceCubes);
-
-                UserInterface.WhatItemToBuy();
 
                 UserInterface.DisplayStats(player1);
                 int numberOfCupsUsed = UserInterface.CupUsedToMakeLemonade(player1.recipe, player1.inventory);
@@ -126,21 +126,23 @@ namespace LemonadeStand
                 {
                     player1.inventory.RemoveIceCube();
                 }
-             
-                UserInterface.DisplayStats(player1);
-                UserInterface.PriceFor1CupOfLemonade(player1.recipe);
 
-                UserInterface.TotalBuyingCupOfLemonade(day.customer, day.weather, player1.recipe, player1, day.customer.random);
-                UserInterface.TotalEarningPerDay(player1.recipe, player1);
-                UserInterface.TotalEarningPerDayPlayer(player1.recipe, player1);
+                UserInterface.DisplayStats(player1);
+                string lemonadePrice = UserInterface.PriceFor1CupOfLemonade(player1.recipe);
+                player1.recipe.lemonadePrice = Convert.ToDecimal(lemonadePrice);
+
+                TotalBuyingCupOfLemonade(day.customer, day.weather, player1.recipe, player1, day.customer.random);
+                player1.wallet.money += player1.soldLemonade * player1.recipe.lemonadePrice;
+
+                UserInterface.TellPlayerTotalCupsSoldAndEarningsPerDay(player1.soldLemonade, player1.recipe.lemonadePrice);
+                UserInterface.TellPlayerCurrentWalletBalance(player1.wallet.money);
+
                 UserInterface.ProfitPerDayPlayer(player1, player1.recipe);
 
                 UserInterface.DisplayStats(player1);
 
                 day.ResetLemonadeSoldPerDay(player1);
             }
-
-
 
             UserInterface.TotalEarningPerWeek(player1);
 
@@ -153,6 +155,16 @@ namespace LemonadeStand
             {
                 Environment.Exit(0);
             }
+        }
+
+        public static void TotalBuyingCupOfLemonade(Customer customer, Weather weather, Recipe recipe, Player player, Random random)
+        {
+            customer.CustomerBuyingCupOfLemonadeBadWeather(weather, player, random);
+            customer.CustomerBuyingCupOfLemonadeFairWeather(weather, player, random);
+            customer.CustomerBuyingCupOfLemonadeGoodWeather(weather, player, random);
+            customer.CustomerBuyingCupOfLemonadeHighPrice(recipe, player, random);
+            customer.CustomerBuyingCupOfLemonadeMediumPrice(recipe, player, random);
+            customer.CustomerBuyingCupOfLemonadeLowPrice(recipe, player, random);
         }
     }
 }

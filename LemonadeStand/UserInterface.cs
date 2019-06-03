@@ -52,32 +52,32 @@ namespace LemonadeStand
         }
 
         //Display what you want to buy
-        public static void WhatItemToBuy()
-        {
-            Console.WriteLine("what item you like to buy?");
-            Console.WriteLine("Enter: 1 = Cup   or   2 = Lemon   or   3 = Sugar   or   4 = Ice cube");
-            string enterItem = Console.ReadLine().ToLower();
+        //public static void WhatItemToBuy()
+        //{
+        //    Console.WriteLine("what item you like to buy?");
+        //    Console.WriteLine("Enter: 1 = Cup   or   2 = Lemon   or   3 = Sugar   or   4 = Ice cube");
+        //    string enterItem = Console.ReadLine().ToLower();
 
-            switch (enterItem)
-            {
-                case "1":
-                    NumberOfCups();
-                    break;
-                case "2":
-                    NumberOfLemons();
-                    break;
-                case "3":
-                    NumberOfSugars();
-                    break;
-                case "4":
-                    NumberOfIceCubes();
-                    break;
-                default:
-                    Console.WriteLine("Invalid input.");
-                    WhatItemToBuy();
-                    break;
-            }
-        }
+        //    switch (enterItem)
+        //    {
+        //        case "1":
+        //            NumberOfCups();
+        //            break;
+        //        case "2":
+        //            NumberOfLemons();
+        //            break;
+        //        case "3":
+        //            NumberOfSugars();
+        //            break;
+        //        case "4":
+        //            NumberOfIceCubes();
+        //            break;
+        //        default:
+        //            Console.WriteLine("Invalid input.");
+        //            WhatItemToBuy();
+        //            break;
+        //    }
+        //}
 
         //How many cups to buy
         public static int NumberOfCups()
@@ -94,7 +94,6 @@ namespace LemonadeStand
                 return NumberOfCups();
             }
         }
-
 
         //Display stats
         public static void DisplayStats(Player player)
@@ -253,37 +252,28 @@ namespace LemonadeStand
         }
 
         //Price for a cup of lemonade
-        public static decimal PriceFor1CupOfLemonade(Recipe recipe)
+        public static string PriceFor1CupOfLemonade(Recipe recipe)
         {
-            Console.WriteLine("Enter price of your lemonade in cents: $");
-            recipe.lemonadePrice = Convert.ToDecimal(Console.ReadLine());
-            return recipe.lemonadePrice;
+            Console.WriteLine("Enter price of your lemonade in cents: $"); 
+            string a = Console.ReadLine();
+            return a;
         }
 
         //Buying Cup of Lemonade
-        public static void TotalBuyingCupOfLemonade (Customer customer, Weather weather, Recipe recipe, Player player, Random random)
-        {
-            customer.CustomerBuyingCupOfLemonadeBadWeather(weather, player, random);
-            customer.CustomerBuyingCupOfLemonadeFairWeather(weather, player, random);
-            customer.CustomerBuyingCupOfLemonadeGoodWeather(weather, player, random);
-            customer.CustomerBuyingCupOfLemonadeHighPrice(recipe, player, random);
-            customer.CustomerBuyingCupOfLemonadeMediumPrice(recipe, player, random);
-            customer.CustomerBuyingCupOfLemonadeLowPrice(recipe, player, random);
-        }
+
         
         //Total earning per day
         //player1.soldLemonade
-        public static decimal TotalEarningPerDay(Recipe recipe, Player player)
+        public static void TellPlayerTotalCupsSoldAndEarningsPerDay(int soldLemonade, decimal lemonadePrice)
         {
             Console.WriteLine("Player earnings for today");
-            Console.WriteLine("# of cups sale: " + player.soldLemonade);
-            Console.WriteLine("# of money sale: " + $"${player.soldLemonade * recipe.lemonadePrice}");       
-            return player.dayEarning;
+            Console.WriteLine("# of cups sale: " + soldLemonade);
+            Console.WriteLine("# of money sale: " + string.Format("{0:#.00}", (soldLemonade * lemonadePrice)));       
         }
 
-        public static void TotalEarningPerDayPlayer(Recipe recipe, Player player)
+        public static void TellPlayerCurrentWalletBalance(decimal walletMoney)
         {
-            Console.WriteLine("Wallet: " + $"${player.wallet.money += (player.soldLemonade * recipe.lemonadePrice)}");
+            Console.WriteLine("Wallet: " + walletMoney);
         }
 
         public static decimal ProfitPerDayPlayer(Player player, Recipe recipe)
@@ -301,10 +291,11 @@ namespace LemonadeStand
         public static void TotalEarningPerWeek(Player player)
         {
             Console.WriteLine("Player earnings for 7 days report:");
-            Console.WriteLine("Total Income: {player.dayEarning}");
+            Console.WriteLine($"Total Income: {player.dayEarning}");
             Console.WriteLine("Total Expenses: ");
-            Console.WriteLine("Net Profit or Loss: {player.totalProfit}");
-            Console.ReadLine();
+            Console.WriteLine($"Net Profit or Loss: {player.wallet.money - 20.00m}");
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
         }
         public static bool DetermineIfRestart()
         {
@@ -315,13 +306,11 @@ namespace LemonadeStand
             {
                 case "1":
                     return true;
-                    break;
                 case "2":
                     return false;
                 default:
                     Console.WriteLine("Invalid input.");
                     return DetermineIfRestart();
-                    break;
             }
 
         
