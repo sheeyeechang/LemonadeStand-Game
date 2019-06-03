@@ -31,7 +31,6 @@ namespace LemonadeStand
             for (int i = 0; i < 7; i++)
             {
                 UserInterface.DaysPlayed(day, i);
-
                 UserInterface.ThisWeekForecast(day.weather, day.dayNames);
                 UserInterface.TodayWeather(day.weather);
                 UserInterface.WalletToStart(player1, player1.recipe);
@@ -136,15 +135,14 @@ namespace LemonadeStand
 
                 UserInterface.TellPlayerTotalCupsSoldAndEarningsPerDay(player1.soldLemonade, player1.recipe.lemonadePrice);
                 UserInterface.TellPlayerCurrentWalletBalance(player1.wallet.money);
-
-                UserInterface.ProfitPerDayPlayer(player1.wallet.money);
+                UserInterface.TellPlayerProfitPerDay(player1.soldLemonade, player1.recipe.lemonadePrice, (store.cupsPrice * numberOfCupsUsed), (store.lemonPrice * numberOfLemonsUsed), (store.sugarPrice * numberOfSugarUsed), (store.iceCubePrice * numberOfIceCubeUsed));
 
                 UserInterface.DisplayStats(player1);
 
                 day.ResetLemonadeSoldPerDay(player1);
             }
 
-            UserInterface.TotalEarningPerWeek(player1);
+            UserInterface.TotalEarningPerWeek(player1.wallet.money);
 
             bool result = UserInterface.DetermineIfRestart();
             if (result == true)

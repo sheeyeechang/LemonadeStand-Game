@@ -259,9 +259,7 @@ namespace LemonadeStand
             return a;
         }
 
-        //Buying Cup of Lemonade
-
-        
+        //Buying Cup of Lemonade 
         //Total earning per day
         //player1.soldLemonade
         public static void TellPlayerTotalCupsSoldAndEarningsPerDay(int soldLemonade, decimal lemonadePrice)
@@ -276,9 +274,9 @@ namespace LemonadeStand
             Console.WriteLine("Wallet: $" + walletMoney);
         }
 
-        public static void ProfitPerDayPlayer(decimal walletMoney)
+        public static void TellPlayerProfitPerDay(int soldLemonade, decimal lemonadePrice, decimal cupsCost, decimal lemonsCost, decimal sugarsCost, decimal iceCubeCost)
         {
-            Console.WriteLine("Today's Profit or Loss: " + string.Format("{0:#.00}", (walletMoney - 20.00m)));
+            Console.WriteLine("Today's Profit or Loss: " + string.Format("{0:#.00}", ((soldLemonade * lemonadePrice) - (cupsCost + lemonsCost + sugarsCost + iceCubeCost))));
         }
 
         //public void DisplayPlayerEarnings(Player player)
@@ -287,11 +285,11 @@ namespace LemonadeStand
         //}
 
         //Total earnings for 7 days
-        public static void TotalEarningPerWeek(Player player)
+        public static void TotalEarningPerWeek(decimal walletMoney)
         {
             Console.WriteLine("Player earnings for 7 days report:");
-            Console.WriteLine($"Total Income: {player.dayEarning}");
-            Console.WriteLine($"Total Profit or Loss for this week: {player.wallet.money - 20.00m}");
+            Console.WriteLine("Total Income: $" + walletMoney);
+            Console.WriteLine($"Total Profit or Loss for this week: {walletMoney - 20.00m}");
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
         }
