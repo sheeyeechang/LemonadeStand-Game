@@ -94,11 +94,5 @@ namespace LemonadeStand
             return countIceCube;
         }
 
-
-        //Inventory Used
-        public void InventoryUsed()
-        {
-
-        }
     }
 }

@@ -137,7 +137,7 @@ namespace LemonadeStand
                 UserInterface.TellPlayerTotalCupsSoldAndEarningsPerDay(player1.soldLemonade, player1.recipe.lemonadePrice);
                 UserInterface.TellPlayerCurrentWalletBalance(player1.wallet.money);
 
-                UserInterface.ProfitPerDayPlayer(player1, player1.recipe);
+                UserInterface.ProfitPerDayPlayer(player1.wallet.money);
 
                 UserInterface.DisplayStats(player1);
 

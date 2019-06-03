@@ -268,18 +268,17 @@ namespace LemonadeStand
         {
             Console.WriteLine("Player earnings for today");
             Console.WriteLine("# of cups sale: " + soldLemonade);
-            Console.WriteLine("# of money sale: " + string.Format("{0:#.00}", (soldLemonade * lemonadePrice)));       
+            Console.WriteLine("# of money sale: $" + string.Format("{0:#.00}", (soldLemonade * lemonadePrice)));       
         }
 
         public static void TellPlayerCurrentWalletBalance(decimal walletMoney)
         {
-            Console.WriteLine("Wallet: " + walletMoney);
+            Console.WriteLine("Wallet: $" + walletMoney);
         }
 
-        public static decimal ProfitPerDayPlayer(Player player, Recipe recipe)
+        public static void ProfitPerDayPlayer(decimal walletMoney)
         {
-            Console.WriteLine("Net Profit or Loss: " + $"${(player.wallet.money += (player.soldLemonade * recipe.lemonadePrice)) - 20.00m}");
-            return player.totalProfit;
+            Console.WriteLine("Today's Profit or Loss: " + string.Format("{0:#.00}", (walletMoney - 20.00m)));
         }
 
         //public void DisplayPlayerEarnings(Player player)
@@ -292,9 +291,8 @@ namespace LemonadeStand
         {
             Console.WriteLine("Player earnings for 7 days report:");
             Console.WriteLine($"Total Income: {player.dayEarning}");
-            Console.WriteLine("Total Expenses: ");
-            Console.WriteLine($"Net Profit or Loss: {player.wallet.money - 20.00m}");
-            Console.WriteLine("Press any key to continue");
+            Console.WriteLine($"Total Profit or Loss for this week: {player.wallet.money - 20.00m}");
+            Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
         }
         public static bool DetermineIfRestart()
