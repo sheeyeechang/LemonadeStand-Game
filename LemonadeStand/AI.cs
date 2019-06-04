@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LemonadeStand
 {
-    public class AI 
+    public class AI : Player
     {
         //constructor (SPAWNER/DEFAULT)//
         public AI()

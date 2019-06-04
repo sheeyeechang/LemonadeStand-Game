@@ -17,9 +17,9 @@ namespace LemonadeStand
             random = new Random();
         }
         // Bad Weather Sale
-        public void CustomerBuyingCupOfLemonadeBadWeather(Weather weather, Player player, Random random)
+        public void CustomerBuyingCupOfLemonadeRainyWeather(Weather weather, Player player, Random random)
         {
-            if (weather.currentWeather == "bad")
+            if (weather.currentWeather == "rain")
             {
                 int cupSale = random.Next(1, 12);
                 for (int i = 1; i <= cupSale; i++)
@@ -30,9 +30,9 @@ namespace LemonadeStand
             }
         }
         //Fair Weather Sale
-        public void CustomerBuyingCupOfLemonadeFairWeather(Weather weather, Player player, Random random)
+        public void CustomerBuyingCupOfLemonadeCloudyWeather(Weather weather, Player player, Random random)
         {
-            if (weather.currentWeather == "fair")
+            if (weather.currentWeather == "cloudy")
             {
                 int cupSale = random.Next(1, 8);
                 for (int i = 1; i <= cupSale; i++)
@@ -44,9 +44,9 @@ namespace LemonadeStand
                 
         }
         // Good Weather Sale
-        public void CustomerBuyingCupOfLemonadeGoodWeather(Weather weather, Player player, Random random)
+        public void CustomerBuyingCupOfLemonadeSunnyWeather(Weather weather, Player player, Random random)
         {
-            if (weather.currentWeather == "good")
+            if (weather.currentWeather == "sunny")
             {
                 int cupSale = random.Next(1, 4);
                 for (int i = 1; i <= cupSale; i++)

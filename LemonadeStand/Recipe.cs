@@ -8,15 +8,16 @@ namespace LemonadeStand
 {
     public class Recipe
     {
+        //member varibale
         //place to put made cups of recipe. probably in a list
         public decimal lemonadePrice;
+
         public int numberOfCup;
         public int numberOfLemon;
         public int numberOfSugar;
         public int numberOfIceCube;
 
-
-
+        //constructor
         public Recipe()
         {
             lemonadePrice = 00.00m;
@@ -26,5 +27,7 @@ namespace LemonadeStand
             numberOfIceCube = 0;
 
         }
+        //ADD recipe
+       
     }
 }

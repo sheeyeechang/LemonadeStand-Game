@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LemonadeStand
 {
-    public class Human 
+    public class Human : Player
     {
         //constructor (SPAWNER/DEFAULT)//
         public Human()

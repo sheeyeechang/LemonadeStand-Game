@@ -22,10 +22,9 @@ namespace LemonadeStand
         //member contructor
         public Weather()
         {
-        weather = new List<string>() { "good", "fair", "bad" };
+        weather = new List<string>() { "sunny", "cloudy", "rainy" };
         forecast = new List<string>() {};
-
-        temperature = new List<int>() { };
+        temperature = new List<int>() {};
 
         random = new Random();
         }
